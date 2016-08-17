@@ -26,7 +26,7 @@ function getDefaultModules() {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!autoprefixer-loader({browers:["last 2 versions"]})'
+        loader: 'style-loader!css-loader'
       },
       {
         test: /\.sass/,
@@ -34,7 +34,7 @@ function getDefaultModules() {
       },
       {
         test: /\.scss/,
-        loader: 'style-loader!css-loader!autoprefixer-loader({browers:["last 2 versions"]})!sass-loader?outputStyle=expanded'
+        loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
       },
       {
         test: /\.less/,
@@ -44,10 +44,10 @@ function getDefaultModules() {
         test: /\.styl/,
         loader: 'style-loader!css-loader!stylus-loader'
       },
-      {
-        test:/\.json$/,
-        loader:'json-loader'
-      },
+      //{
+      //  test: /\.json$/,
+      //  loader:'json-loader'
+      //},
       {
         test: /\.(png|jpg|gif|woff|woff2)$/,
         loader: 'url-loader?limit=8192'
