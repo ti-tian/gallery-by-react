@@ -19,7 +19,14 @@ imageDatas = ((imageDatasArr)=> {
 //获取区间内的一个随机值
 
 var getRangeRandom = (low, high)=>Math.floor(Math.random() * (high - low) + low);
+//获取0-30°之间一个任意正负值
+var get30DegRandom = ()=> {
+  let deg = '';
+  deg = (Math.random() > 0.5 ) ? '+' : '-';
+  return deg + Math.ceil(Math.random() * 30);
+};
 
+//单个图片组件
 class ImgFigure extends React.Component {
   render() {
     var styleObj = {};
@@ -27,6 +34,14 @@ class ImgFigure extends React.Component {
     if (this.props.arrange.pos) {
       styleObj = this.props.arrange.pos;
     }
+
+    //如果图片的旋转角度有值并且不为0，添加旋转角度
+    if (this.props.arrange.rotate) {
+      (['Moz', 'Ms', 'Webkit', '']).forEach((value)=> {
+        styleObj[value + 'Transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)';
+      })
+    }
+
     return (
       <figure className="img-figure" style={ styleObj }>
         <img src={this.props.data.imageURL} alt={this.props.data.title}/>
@@ -37,6 +52,7 @@ class ImgFigure extends React.Component {
     )
   }
 }
+
 class GalleryByReactApp extends React.Component {
   constructor(props) {
     super(props);
@@ -65,7 +81,7 @@ class GalleryByReactApp extends React.Component {
         //}
       ]
     };
-  }
+  };
 
   //重新布局所有图片
   rearrange(centerIndex) {
@@ -79,37 +95,45 @@ class GalleryByReactApp extends React.Component {
       hPosRangeY = hPosRange.y,
       vPosRangeTopY = vPosRange.topY,
       vPosRangeX = vPosRange.x,
-
       imgsArrangTopArr = [],
       topImgNum = Math.floor(Math.random() * 2),//取一个或者不取
       topImgSpiceIndex = 0,
       imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex, 1);
     //首先居中centerIndex图片
     imgsArrangeCenterArr[0].pos = centerPos;
+    //centerIndex图片不需要旋转
+    imgsArrangeCenterArr[0].rotate = 0;
     //取出要布局上测的图片的状态信息
     topImgSpiceIndex = Math.floor(Math.random() * (imgsArrangeArr.length - topImgNum));
     imgsArrangTopArr = imgsArrangeArr.splice(topImgSpiceIndex, topImgNum);
     //布局位于上侧的图片
     imgsArrangTopArr.forEach((value, index)=> {
-      imgsArrangTopArr[index].pos = {
-        top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
-        left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
-      }
-    })
+      imgsArrangTopArr[index] = {
+        pos: {
+          top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
+          left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
+        },
+        rotate: get30DegRandom()
+      };
+    });
 
     //布局左两侧的图片
     for (let i = 0, j = imgsArrangeArr.length, k = j / 2; i < j; i++) {
       let hPosRangeLORX = null;
+
       //前半部分布局左边,右边部分布局右边
       if (i < k) {
         hPosRangeLORX = hPosRangeLeftSecX;
       } else {
         hPosRangeLORX = hPosRangeRightSecX
       }
-      imgsArrangeArr[i].pos = {
-        top: getRangeRandom(hPosRangeY[0], hPosRangeY[1]),
-        left: getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1])
-      }
+      imgsArrangeArr[i] = {
+        pos: {
+          top: getRangeRandom(hPosRangeY[0], hPosRangeY[1]),
+          left: getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1])
+        },
+        rotate: get30DegRandom()
+      };
     }
     if (imgsArrangTopArr && imgsArrangTopArr[0]) {
       imgsArrangeArr.splice(topImgSpiceIndex, 0, imgsArrangTopArr[0]);
@@ -118,7 +142,7 @@ class GalleryByReactApp extends React.Component {
     this.setState({
       imgsArrangeArr: imgsArrangeArr
     });
-  }
+  };
 
   componentDidMount() {
     let stageDOM = ReactDOM.findDOMNode(this.refs.stage),
@@ -156,9 +180,9 @@ class GalleryByReactApp extends React.Component {
 
     this.Constant.vPosRange.x[0] = halfStageW - imgW;
     this.Constant.vPosRange.x[1] = halfStageW;
-    let num = Math.ceil(Math.random()*10);
+    let num = Math.floor(Math.random() * 10);
     this.rearrange(num);
-  }
+  };
 
   render() {
     var controllerUnits = [],
@@ -169,12 +193,13 @@ class GalleryByReactApp extends React.Component {
           pos: {
             left: 0,
             top: 0
-          }
+          },
+          rotate: 0
         }
       }
       imgFigures.push(<ImgFigure data={value} key={index} ref={'imgFigure'+index}
                                  arrange={this.state.imgsArrangeArr[index]}/>)
-    })
+    });
     return (
       <section className="stage" ref="stage">
         <section className="img-sec">
