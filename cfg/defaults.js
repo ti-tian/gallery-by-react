@@ -49,7 +49,7 @@ function getDefaultModules() {
       //  loader:'json-loader'
       //},
       {
-        test: /\.(png|jpg|gif|woff|woff2)$/,
+        test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svgs)$/,
         loader: 'url-loader?limit=8192'
       },
       {
@@ -62,7 +62,7 @@ function getDefaultModules() {
 
 module.exports = {
   srcPath: srcPath,
-  publicPath: '/assets/',
+  publicPath: 'assets/',
   port: dfltPort,
   getDefaultModules: getDefaultModules
 };

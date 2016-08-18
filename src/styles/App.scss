@@ -1,66 +1,129 @@
 @mixin dis_whole {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-html, body {
-    @include dis_whole;
+@mixin abpos {
+  position: absolute;
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url('../fonts/icons/turn-arrow.eot') format("embedded-opentype"), /* IE9*/
+  url('../fonts/icons/turn-arrow.woff') format('woff'), /* chrome、firefox */
+  url('../fonts/icons/turn-arrow.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('../fonts/icons/turn-arrow.svg') format('svg'); /* iOS 4.1- */
+}
 
-    background-color: #222;
+
+html, body {
+  @include dis_whole;
+
+  background-color: #222;
 }
 
 .content {
-    @include dis_whole;
+  @include dis_whole;
 }
 
 /*stage--start*/
 .stage {
-    position: relative;
-    width: 100%;
-    height: 880px;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 /*stage--end*/
 
 /* image -- start*/
 .img-sec {
-    position: relative;
+  position: relative;
+  @include dis_whole;
+  perspective: 1800px;
+  overflow: hidden;
+  background-color: #DDDDDD;
+  @at-root {
+    .img-figure {
+      @include abpos;
+      width: 320px;
+      height: 360px;
+      margin: 0;
+      padding: 40px;
+      box-sizing: border-box;
+      background-color: #fff;
+      cursor: pointer;
+      transform-origin: 0 50% 0;
+      transform-style: preserve-3d;
+      transition: transform .6s ease-in-out, left .6s ease-in-out, top .6s ease-in-out;
+      &.is-inverse {
+        transform: translate(320px) rotateY(180deg);
+      }
+    }
 
-    @include dis_whole;
+    .img-back {
+      @include abpos;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      padding: 30px;
+      box-sizing: border-box;
+      text-align: center;
+      color: #666;
+      transform: rotateY(180deg);
+      background: #fff;
+    }
 
-    overflow: hidden;
-    background-color: #DDDDDD;
-   @at-root {
-     .img-figure{
-       position: absolute;
-        width: 320px;
-       height: 360px;
-       margin: 0;
-       padding: 40px;
-       box-sizing: border-box;
-       background-color: #fff;
-     }
-     figcaption{
-       text-align: center;
-       .img-title{
-         margin:20px 0 0 0;
-         color: #a7a0a2;
-         font-size: 16px;
-       }
-     }
-   }
+    figcaption {
+      text-align: center;
+      .img-title {
+        margin: 20px 0 0 0;
+        color: #a7a0a2;
+        font-size: 16px;
+      }
+    }
+  }
+
 }
 
 /*image -- end*/
 
 /*controller --start*/
 .controller-nav {
-    position: absolute;
-    left: 0;
-    bottom: 20px;
-    z-index: 101;
-    width: 100%;
-    text-align: center;
+  @include abpos;
+  left: 0;
+  bottom: 20px;
+  z-index: 101;
+  width: 100%;
+  text-align: center;
+  @at-root {
+    .controller-unit {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin: 0 10px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #aaa;
+      border-radius: 50%;
+      transform: scale(.6);
+      vertical-align: middle;
+      translation: transform .6s ease-in-out,;
+      &.is-center {
+        background: #888888;
+        transform: scale(1);
+        &::after {
+          color: #fff;
+          font-family: 'iconfont';
+          line-height: 30px;
+          content: '\e600';
+        }
+        &.is-inverse {
+          background: #555;
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
 }
 
 /*controller --end*/
