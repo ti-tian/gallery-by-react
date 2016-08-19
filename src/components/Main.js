@@ -60,8 +60,8 @@ class ImgFigure extends React.Component {
         styleObj[value + 'Transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)';
       })
     }
-    if (this.props.arrange.isCenter){
-      styleObj.zIndex=11;
+    if (this.props.arrange.isCenter) {
+      styleObj.zIndex = 11;
     }
     let imgFigureClassName = 'img-figure';
     imgFigureClassName += this.props.arrange.isInverse ? ' is-inverse ' : '';
