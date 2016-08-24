@@ -20,7 +20,10 @@ html, body {
 
   background-color: #222;
 }
-
+//.img{
+//  position: absolute;
+//  z-index: 1;
+//}
 .content {
   @include dis_whole;
 }
@@ -69,7 +72,8 @@ html, body {
       box-sizing: border-box;
       text-align: center;
       color: #666;
-      transform: rotateY(180deg);
+      transform: rotateY(180deg) translateZ(1px);
+      backface-visibility:hidden;
       background: #fff;
     }
 

@@ -13,7 +13,7 @@ module.exports = {
   additionalPaths: additionalPaths,
   port: defaultSettings.port,
   debug: true,
-  devtool: 'eval',
+  devtool: false,
   output: {
     path: path.join(__dirname, '/../dist/assets'),
     filename: 'app.js',
