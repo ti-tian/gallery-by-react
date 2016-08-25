@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{gallery-by-react node_modules}" />
-    <file url="PROJECT" libraries="{gallery-by-react node_modules, node-DefinitelyTyped, node_modules, react-DefinitelyTyped}" />
+    <file url="file://$PROJECT_DIR$" libraries="{gallery-by-react/node_modules}" />
+    <file url="PROJECT" libraries="{node-DefinitelyTyped, node_modules, react-DefinitelyTyped}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
+    <includedPredefinedLibrary name="gallery-by-react/node_modules" />
   </component>
 </project>
