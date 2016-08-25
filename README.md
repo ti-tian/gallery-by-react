@@ -1,7 +1,7 @@
 # gallery-by-react
 one photo gallery project based on react
 
-根据慕课网 “React实战-打造画廊应用” 课程完成
+#根据慕课网 “React实战-打造画廊应用” 课程完成
 
  clone 下来直接 npm start 就能运行
 
@@ -19,4 +19,4 @@ https://3terrace.github.io/gallery-by-react/dist/index.html
 
 QQ：980242860 如果有疑问可以联系我
 
-不要吝啬你的star哦！！！
+#不要吝啬你的star哦！！！
