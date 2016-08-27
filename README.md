@@ -18,3 +18,7 @@ https://3terrace.github.io/gallery-by-react/dist/index.html
 再查询文档，达到熟悉react工作流程的目的
 
 QQ：980242860 如果有疑问可以联系我！
+
+#最好是自己解决
+
+好好多同学都是报错了也不会去搜。。。
