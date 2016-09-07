@@ -253,7 +253,7 @@ class GalleryByReactApp extends React.Component {
 
     let imgFigureDOM = ReactDOM.findDOMNode(this.refs.imgFigure0),
       imgW = imgFigureDOM.scrollWidth,
-      imgH = imgFigureDOM.scrollWidth,
+      imgH = imgFigureDOM.scrollHeight,
       halfImgW = Math.ceil(imgW / 2),
       halfImgH = Math.ceil(imgH / 2);
 
