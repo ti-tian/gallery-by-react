@@ -5,9 +5,7 @@ one photo gallery project based on react
 
  clone 下来直接 npm start 就能运行
 
-或者点击下面在线预览的地址
-
-https://3terrace.github.io/gallery-by-react/dist/index.html
+或者点击[在线预览](https://ti-tian.github.io/gallery-by-react/dist/index.html)的地址
 
 所用技术栈 React、webpack、sass、ES6，如果npm也算
 
